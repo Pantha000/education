@@ -111,7 +111,7 @@ function App() {
           }
         />
         <Route
-          path="/questions"
+          path="/all/question"
           element={
             <ProtectedRoute>
               <RoleRoute role="Student">

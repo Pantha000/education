@@ -5,7 +5,7 @@ const AdminSidebar = ({ showSidebar }) => {
   return (
     <>
       {showSidebar && (
-        <div className="h-screen bg-black text-white w-2/12  flex flex-col py-20 px-1 absolute top-0">
+        <div className="h-screen bg-black text-white w-2/12  flex flex-col py-20 px-1 fixed top-0">
           <Link className="hover:bg-slate-400 py-2 px-3" to="/">
             Create Admin
           </Link>

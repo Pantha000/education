@@ -14,6 +14,25 @@ export const getTeachers = () => async (dispatch) => {
   }
 };
 
+export const getQuestions = (keyword, category) => async (dispatch) => {
+  try {
+    dispatch({ type: "GetStudentQuestionRequest" });
+
+    let link = `/api/v1/get/questions?keyword=${keyword}`;
+
+    if (category) {
+      link = `/api/v1/get/questions?keyword=${keyword}&semester=${category}`;
+    }
+    const { data } = await axios.get(link);
+    dispatch({ type: "GetStudentQuestionSuccess", payload: data.questions });
+  } catch (err) {
+    dispatch({
+      type: "GetStudentQuestionFail",
+      payload: err.response.data.message,
+    });
+  }
+};
+
 //Clearing Errors
 export const clearError = () => async (dispatch) => {
   dispatch({ type: "ClearErrors" });

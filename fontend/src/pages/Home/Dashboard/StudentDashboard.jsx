@@ -27,7 +27,7 @@ const StudentDashboard = () => {
         </p>
       </div>
       <div className="mt-6 flex items-start  ">
-        <div className="w-2/12 bg-slate-500 p-4 rounded-md">
+        <div className="w-2/12 bg-slate-500 p-4 rounded-md mt-1">
           <h4 className="text-white font-semibold text-xl">Dept</h4>
           <div className="ml-5 mt-1 ">
             {finalDept &&
@@ -44,22 +44,27 @@ const StudentDashboard = () => {
           {loading ? (
             <p>Please Wait.......</p>
           ) : (
-            <div className="flex items-center">
+            <div className="flex items-center flex-warp">
               {teachers &&
                 teachers.map((val, ind) => {
                   return (
                     <Link
                       key={ind}
                       to={`/teacher/${val._id}`}
-                      className=" bg-slate-700 text-white ml-1 cursor-pointer rounded-md p-4 w-3/12"
+                      className="  text-white ml-1 mt-1 cursor-pointer rounded-md  w-3/12"
                     >
-                      <img
-                        src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
-                        className="h-40"
-                      />
-                      <div className="mt-2">
-                        <p className="font-semibold">{val.name}</p>
-                        <p>{val.dept ? val.dept : "Enter a Department"}</p>
+                      <div
+                        className="bg-slate-700 p-4"
+                        style={{ width: "99%" }}
+                      >
+                        <img
+                          src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
+                          className="h-40"
+                        />
+                        <div className="mt-2">
+                          <p className="font-semibold">{val.name}</p>
+                          <p>{val.dept ? val.dept : "Enter a Department"}</p>
+                        </div>
                       </div>
                     </Link>
                   );

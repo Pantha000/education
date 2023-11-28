@@ -14,6 +14,18 @@ export const studentTeacherReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
+  GetStudentQuestionRequest: (state) => {
+    state.loading = true;
+  },
+  GetStudentQuestionSuccess: (state, action) => {
+    state.loading = false;
+    state.questions = action.payload;
+  },
+  GetStudentQuestionFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+
   ClearErrors: (state) => {
     state.error = null;
   },

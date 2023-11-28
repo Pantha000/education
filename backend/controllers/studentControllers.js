@@ -24,7 +24,10 @@ exports.getAllTeacher = catchAsyncError(async (req, res, next) => {
        All Questions (/api/v1/get/questions) (req : get)
    =================================================== */
 exports.getAllQuestion = catchAsyncError(async (req, res, next) => {
-  const apifeatures = new ApiFetaures(Question.find(), req.query)
+  const apifeatures = new ApiFetaures(
+    Question.find().sort({ createdAt: -1 }),
+    req.query
+  )
     .searchCode()
     .filter();
   const questions = await apifeatures.query;

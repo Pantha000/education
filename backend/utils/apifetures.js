@@ -29,7 +29,7 @@ class ApiFetaures {
   searchCode() {
     const keyword = this.queryStr.keyword
       ? {
-          code: {
+          title: {
             $regex: this.queryStr.keyword,
             $options: "i",
           },
