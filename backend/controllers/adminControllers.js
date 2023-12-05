@@ -6,6 +6,7 @@ const Admin = require("../models/adminModel");
 const Student = require("../models/studentModel");
 const Teacher = require("../models/teacherModel");
 const Question = require("../models/questionModel");
+const Routine = require("../models/routineModel");
 
 /* =============================================================
         Register Admin (/api/v1/register/admin) (req : POST)
@@ -103,5 +104,49 @@ exports.createQuestion = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "Question Create Successfully",
+  });
+});
+
+/* ==============================================================
+      Create Routine (/api/v1/create/routine) (req : POST)
+   ============================================================== */
+exports.createRoutine = catchAsyncError(async (req, res, next) => {
+  const { code, room, section, dept, semester, day, time, teacherId, title } =
+    req.body;
+
+  // const result = await cloudinary.uploader.upload(image, {
+  //   folder: "post",
+  //   height: 600,
+  //   width: 650,
+  // });
+
+  const data = {
+    code,
+    room,
+    section,
+    dept,
+    semester,
+    day,
+    time,
+    teacher: teacherId,
+    title,
+  };
+  await Routine.create(data);
+
+  res.status(200).json({
+    success: true,
+    message: "Routine Create Successfully",
+  });
+});
+
+/* ==============================================================
+      All Routine(/api/v1/all/routine) (req : GET)
+   ============================================================== */
+exports.getRoutines = catchAsyncError(async (req, res, next) => {
+  const routines = await Routine.find().populate({ path: "teacher" });
+
+  res.status(200).json({
+    success: true,
+    routines,
   });
 });

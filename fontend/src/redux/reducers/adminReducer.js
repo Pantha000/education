@@ -86,3 +86,36 @@ export const adminStudentReducer = createReducer(initialState, {
     state.success = null;
   },
 });
+
+export const adminRoutineReducer = createReducer(initialState, {
+  CreateRoutineRequest: (state) => {
+    state.loading = true;
+  },
+  CreateRoutineSuccess: (state, action) => {
+    state.loading = false;
+    state.success = action.payload.message;
+  },
+  CreateRoutineFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+
+  GetRoutineRequest: (state) => {
+    state.loading = true;
+  },
+  GetRoutineSuccess: (state, action) => {
+    state.loading = false;
+    state.routines = action.payload;
+  },
+  GetRoutineFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+
+  ClearErrors: (state) => {
+    state.error = null;
+  },
+  ClearSuccess: (state) => {
+    state.success = null;
+  },
+});

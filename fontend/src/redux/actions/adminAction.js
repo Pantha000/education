@@ -73,6 +73,32 @@ export const getTeachers = () => async (dispatch) => {
   }
 };
 
+export const createRoutine = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: "CreateRoutineRequest" });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.post(
+      "/api/v1/create/routine",
+      userData,
+      config
+    );
+    dispatch({ type: "CreateRoutineSuccess", payload: data });
+  } catch (err) {
+    dispatch({ type: "CreateRoutineFail", payload: err.response.data.message });
+  }
+};
+export const getRoutines = () => async (dispatch) => {
+  try {
+    dispatch({ type: "GetRoutineRequest" });
+    const { data } = await axios.get("/api/v1/all/routine");
+    dispatch({ type: "GetRoutineSuccess", payload: data.routines });
+  } catch (err) {
+    dispatch({ type: "GetRoutineFail", payload: err.response.data.message });
+  }
+};
+
 //Clearing Errors
 export const clearError = () => async (dispatch) => {
   dispatch({ type: "ClearErrors" });

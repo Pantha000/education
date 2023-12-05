@@ -4,6 +4,9 @@ const routineSchema = new mongoose.Schema({
   code: {
     type: String,
   },
+  title: {
+    type: String,
+  },
   room: {
     type: String,
   },
@@ -15,9 +18,6 @@ const routineSchema = new mongoose.Schema({
     type: String,
   },
   dept: {
-    type: String,
-  },
-  version: {
     type: String,
   },
   semester: {

@@ -8,6 +8,8 @@ const {
   createQuestion,
   getTeachers,
   getStudents,
+  createRoutine,
+  getRoutines,
 } = require("../controllers/adminControllers");
 
 //Routes
@@ -24,7 +26,12 @@ router
   .route("/create/question")
   .post(isAuthenticatedUser, authorizeRoles("Admin"), createQuestion);
 
+router
+  .route("/create/routine")
+  .post(isAuthenticatedUser, authorizeRoles("Admin"), createRoutine);
+
 router.route("/all/teacher").get(getTeachers);
 router.route("/all/student").get(getStudents);
+router.route("/all/routine").get(getRoutines);
 
 module.exports = router;

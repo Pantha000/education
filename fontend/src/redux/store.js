@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { forgotPasswordReducer, userReducer } from "./reducers/userReducer";
 import {
+  adminRoutineReducer,
   adminStudentReducer,
   adminTeacherReducer,
   createAdminReducer,
@@ -14,6 +15,7 @@ const store = configureStore({
     createAdmin: createAdminReducer,
     teacher: adminTeacherReducer,
     student: adminStudentReducer,
+    adminRoutine: adminRoutineReducer,
     getStudentTeacher: studentTeacherReducer,
   },
 });
