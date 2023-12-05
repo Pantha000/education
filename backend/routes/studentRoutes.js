@@ -4,6 +4,7 @@ const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const {
   getAllTeacher,
   getAllQuestion,
+  getAllRoutine,
 } = require("../controllers/studentControllers");
 
 router
@@ -13,5 +14,9 @@ router
 router
   .route("/get/questions")
   .get(isAuthenticatedUser, authorizeRoles("Student"), getAllQuestion);
+
+router
+  .route("/get/routines")
+  .get(isAuthenticatedUser, authorizeRoles("Student"), getAllRoutine);
 
 module.exports = router;
