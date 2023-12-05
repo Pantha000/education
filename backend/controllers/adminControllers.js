@@ -1,7 +1,7 @@
 const cloudinary = require("cloudinary");
 const catchAsyncError = require("../middleware/catchAsyncError");
 const ErrorHandler = require("../utils/errorhandler");
-
+const ApiFetaures = require("../utils/apifetures");
 const Admin = require("../models/adminModel");
 const Student = require("../models/studentModel");
 const Teacher = require("../models/teacherModel");
@@ -143,7 +143,13 @@ exports.createRoutine = catchAsyncError(async (req, res, next) => {
       All Routine(/api/v1/all/routine) (req : GET)
    ============================================================== */
 exports.getRoutines = catchAsyncError(async (req, res, next) => {
-  const routines = await Routine.find().populate({ path: "teacher" });
+  const apifeatures = new ApiFetaures(
+    Routine.find().populate({ path: "teacher" }).sort({ createdAt: -1 }),
+    req.query
+  )
+    .searchCode()
+    .filter();
+  const routines = await apifeatures.query;
 
   res.status(200).json({
     success: true,

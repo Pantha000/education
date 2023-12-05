@@ -7,7 +7,7 @@ const AllRoutine = () => {
   const dispatch = useDispatch();
   const { routines, loading } = useSelector((state) => state.adminRoutine);
 
-  const [qry, setQry] = useState(" ");
+  const [qry, setQry] = useState("");
   const handleSubmit = () => {
     dispatch(getRoutines(qry));
   };

@@ -89,10 +89,10 @@ export const createRoutine = (userData) => async (dispatch) => {
     dispatch({ type: "CreateRoutineFail", payload: err.response.data.message });
   }
 };
-export const getRoutines = () => async (dispatch) => {
+export const getRoutines = (qry) => async (dispatch) => {
   try {
     dispatch({ type: "GetRoutineRequest" });
-    const { data } = await axios.get("/api/v1/all/routine");
+    const { data } = await axios.get(`/api/v1/all/routine?keyword=${qry}`);
     dispatch({ type: "GetRoutineSuccess", payload: data.routines });
   } catch (err) {
     dispatch({ type: "GetRoutineFail", payload: err.response.data.message });
