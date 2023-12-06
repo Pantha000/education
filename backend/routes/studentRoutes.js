@@ -15,8 +15,6 @@ router
   .route("/get/questions")
   .get(isAuthenticatedUser, authorizeRoles("Student"), getAllQuestion);
 
-router
-  .route("/get/routines")
-  .get(isAuthenticatedUser, authorizeRoles("Student"), getAllRoutine);
+router.route("/get/routines").get(getAllRoutine);
 
 module.exports = router;

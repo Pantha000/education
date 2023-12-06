@@ -46,9 +46,7 @@ exports.getAllRoutine = catchAsyncError(async (req, res, next) => {
   const apifeatures = new ApiFetaures(
     Routine.find().populate({ path: "teacher" }).sort({ createdAt: -1 }),
     req.query
-  )
-    .searchCode()
-    .filter();
+  ).filter();
   const routines = await apifeatures.query;
 
   res.status(200).json({

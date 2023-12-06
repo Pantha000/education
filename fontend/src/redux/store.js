@@ -6,7 +6,7 @@ import {
   adminTeacherReducer,
   createAdminReducer,
 } from "./reducers/adminReducer";
-import { studentTeacherReducer } from "./reducers/studentReducer";
+import { studentReducer } from "./reducers/studentReducer";
 
 const store = configureStore({
   reducer: {
@@ -16,7 +16,7 @@ const store = configureStore({
     teacher: adminTeacherReducer,
     student: adminStudentReducer,
     adminRoutine: adminRoutineReducer,
-    getStudentTeacher: studentTeacherReducer,
+    getStudentTeacher: studentReducer,
   },
 });
 

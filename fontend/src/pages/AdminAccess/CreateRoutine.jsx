@@ -34,9 +34,7 @@ const CreateRoutine = () => {
         code: code,
         room: room,
         section,
-        section,
         dept: dept,
-        semester,
         semester,
         time: time,
         day: day,
@@ -162,14 +160,3 @@ const CreateRoutine = () => {
 };
 
 export default CreateRoutine;
-
-// const data = {
-//   code,
-//   room,
-//   section,
-//   dept,
-//   semester,
-//   day,
-//   time,
-//   teacher: teacherId,
-// };

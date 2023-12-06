@@ -21,6 +21,7 @@ import AllTeacher from "./pages/AdminAccess/AllTeacher";
 import Question from "./pages/StudentAccess/Question";
 import CreateRoutine from "./pages/AdminAccess/CreateRoutine";
 import AllRoutine from "./pages/AdminAccess/AllRoutine";
+import Routine from "./pages/StudentAccess/Routine";
 
 function App() {
   const dispatch = useDispatch();
@@ -138,6 +139,16 @@ function App() {
             <ProtectedRoute>
               <RoleRoute role="Student">
                 <Question />
+              </RoleRoute>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/student/routine"
+          element={
+            <ProtectedRoute>
+              <RoleRoute role="Student">
+                <Routine />
               </RoleRoute>
             </ProtectedRoute>
           }

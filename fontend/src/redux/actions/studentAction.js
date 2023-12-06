@@ -33,6 +33,21 @@ export const getQuestions = (keyword, category) => async (dispatch) => {
   }
 };
 
+export const getRoutines = (section, dept) => async (dispatch) => {
+  try {
+    dispatch({ type: "GetStudentRoutineRequest" });
+
+    const { data } = await axios.get(
+      `/api/v1/get/routines?section=${section}&dept=${dept}`
+    );
+    dispatch({ type: "GetStudentRoutineSuccess", payload: data.routines });
+  } catch (err) {
+    dispatch({
+      type: "GetStudentRoutineFail",
+      payload: err.response.data.message,
+    });
+  }
+};
 //Clearing Errors
 export const clearError = () => async (dispatch) => {
   dispatch({ type: "ClearErrors" });
