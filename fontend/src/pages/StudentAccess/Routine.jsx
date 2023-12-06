@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRoutines } from "../../redux/actions/studentAction";
 import Loading from "../../components/Loading";
+import { toast } from "react-toastify";
 
 const Routine = () => {
   const dispatch = useDispatch();
@@ -9,13 +10,56 @@ const Routine = () => {
 
   const [section, setSection] = useState();
   const [dept, setDept] = useState();
-  console.log(routines && routines);
+  //   console.log(routines && routines);
+
+  let sat = routines && routines.filter((val) => val.day === "Sat");
+  let sun = routines && routines.filter((val) => val.day === "Sun");
+  let mon = routines && routines.filter((val) => val.day === "Mon");
+  let tue = routines && routines.filter((val) => val.day === "Tue");
+  let wed = routines && routines.filter((val) => val.day === "Wed");
+  let thu = routines && routines.filter((val) => val.day === "Thu");
+
+  let array = [
+    {
+      cap: sat,
+      type: "sat",
+    },
+    {
+      cap: sun,
+      type: "sun",
+    },
+    {
+      cap: mon,
+      type: "mon",
+    },
+    {
+      cap: tue,
+      type: "tue",
+    },
+    {
+      cap: wed,
+      type: "wed",
+    },
+    {
+      cap: thu,
+      type: "thu",
+    },
+  ];
+  console.log(array);
 
   const deptArrayData = ["CSE", "SWE"];
-  const sectionArrayData = ["55-S", "55-A", "55-S", "55-A", "55-S", "55-A"];
+  const sectionArrayData = ["55_S", "55_A"];
 
   const handleSubmit = () => {
-    dispatch(getRoutines(section, dept));
+    if (dept) {
+      if (section) {
+        dispatch(getRoutines(section, dept));
+      } else {
+        toast("Please Select A Section");
+      }
+    } else {
+      toast("Please Select A Department");
+    }
   };
   //   useEffect(() => {}, []);
   return (
@@ -56,10 +100,32 @@ const Routine = () => {
             onClick={handleSubmit}
             className="w-full px-3 py-2 bg-orange-900 text-white  mt-4"
           >
-            {loading ? <Loading /> : "Find your section"}
+            {loading ? <Loading /> : "Find your routine"}
           </button>
         </div>
-        <div>Ok Thats it routine</div>
+        {routines && (
+          <div className="mt-5">
+            <div className="flex justify-evenly">
+              {array.map((val, ind) => {
+                return (
+                  <div key={ind}>
+                    {val.cap && val.cap.length > 0 && (
+                      <button className=" bg-slate-400 mr-2 px-5 py-2 rounded-lg text-white font-medium">
+                        {val.type}
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <div>
+              {routines &&
+                routines.map((val, ind) => {
+                  return <div></div>;
+                })}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
